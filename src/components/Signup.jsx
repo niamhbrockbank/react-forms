@@ -1,4 +1,14 @@
 export default function Signup() {
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const fd = new FormData(event.target);
+    const acquisitionChannel = fd.getAll("acquisition");
+
+    const data = Object.fromEntries(fd.entries());
+    data.acquisition = acquisitionChannel;
+  }
+
   return (
     <form>
       <h2>Welcome on board!</h2>
@@ -89,7 +99,11 @@ export default function Signup() {
         <button type="reset" className="button button-flat">
           Reset
         </button>
-        <button type="submit" className="button">
+        <button
+          onSubmit={(e) => handleSubmit(e)}
+          type="submit"
+          className="button"
+        >
           Sign up
         </button>
       </p>
